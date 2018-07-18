@@ -1,0 +1,40 @@
+package com.assignment.cookrecipe;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE1_JSON;
+import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE2_JSON;
+import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE3_JSON;
+import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE4_JSON;
+import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE5_JSON;
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+public class RecipeControllerTest {
+
+    @Autowired
+    private MockMvc mvc;
+
+    @Test
+    public void listAllRecipes() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/api/recipes").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(RECIPE1_JSON)))
+                .andExpect(content().string(containsString(RECIPE2_JSON)))
+                .andExpect(content().string(containsString(RECIPE3_JSON)))
+                .andExpect(content().string(containsString(RECIPE4_JSON)))
+                .andExpect(content().string(containsString(RECIPE5_JSON)));
+    }
+}
