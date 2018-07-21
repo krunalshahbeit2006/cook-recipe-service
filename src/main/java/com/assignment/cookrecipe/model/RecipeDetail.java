@@ -1,8 +1,7 @@
 package com.assignment.cookrecipe.model;
 
-import java.util.ArrayList;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
-import java.util.List;
 
 /**
  * TODO Class description
@@ -11,16 +10,27 @@ import java.util.List;
  * @since 7/14/2018
  */
 public class RecipeDetail {
-    private Date dateOfCreation;
-    private String typeOfDish;
-    private int numberOfPeopleDishSuitableFor;
-    private List<String> listOfIngredients;
-    private List<String> cookingInstructions;
 
-    public RecipeDetail(final Date dateOfCreation, final String typeOfDish, final int numberOfPeopleDishSuitableFor) {
+    private long id;
+
+    @NotBlank
+    private Date dateOfCreation;
+
+    @NotBlank
+    private int numberOfPeopleDishSuitableFor;
+
+    public RecipeDetail(final long id, final Date dateOfCreation, final int numberOfPeopleDishSuitableFor) {
+        this.id = id;
         this.dateOfCreation = dateOfCreation;
-        this.typeOfDish = typeOfDish;
         this.numberOfPeopleDishSuitableFor = numberOfPeopleDishSuitableFor;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Date getDateOfCreation() {
@@ -31,34 +41,12 @@ public class RecipeDetail {
         this.dateOfCreation = dateOfCreation;
     }
 
-    public String getTypeOfDish() {
-        return typeOfDish;
-    }
-
-    public void setTypeofDish(String typeOfDish) {
-        this.typeOfDish = typeOfDish;
-    }
-
     public int getNumberOfPeopleDishSuitableFor() {
         return numberOfPeopleDishSuitableFor;
     }
 
     public void setNumberOfPeopleDishSuitableFor(int numberOfPeopleDishSuitableFor) {
         this.numberOfPeopleDishSuitableFor = numberOfPeopleDishSuitableFor;
-    }
-
-    public List<String> getListOfIngredients() {
-        if (listOfIngredients == null) {
-            listOfIngredients = new ArrayList<>();
-        }
-        return listOfIngredients;
-    }
-
-    public List<String> getCookingInstructions() {
-        if (cookingInstructions == null) {
-            cookingInstructions = new ArrayList<>();
-        }
-        return cookingInstructions;
     }
 
     @Override
@@ -70,36 +58,28 @@ public class RecipeDetail {
 
         RecipeDetail that = (RecipeDetail) o;
 
+        if (id != that.id)
+            return false;
         if (numberOfPeopleDishSuitableFor != that.numberOfPeopleDishSuitableFor)
             return false;
-        if (!dateOfCreation.equals(that.dateOfCreation))
-            return false;
-        if (!typeOfDish.equals(that.typeOfDish))
-            return false;
-        if (!listOfIngredients.equals(that.listOfIngredients))
-            return false;
-        return cookingInstructions.equals(that.cookingInstructions);
+        return dateOfCreation.equals(that.dateOfCreation);
 
     }
 
     @Override
     public int hashCode() {
-        int result = dateOfCreation.hashCode();
-        result = 31 * result + typeOfDish.hashCode();
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + dateOfCreation.hashCode();
         result = 31 * result + numberOfPeopleDishSuitableFor;
-        result = 31 * result + listOfIngredients.hashCode();
-        result = 31 * result + cookingInstructions.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "RecipeDetail{" +
-                "dateOfCreation=" + dateOfCreation +
-                ", typeOfDish='" + typeOfDish + '\'' +
+                "id=" + id +
+                ", dateOfCreation=" + dateOfCreation +
                 ", numberOfPeopleDishSuitableFor=" + numberOfPeopleDishSuitableFor +
-                ", listOfIngredients=" + listOfIngredients +
-                ", cookingInstructions=" + cookingInstructions +
                 '}';
     }
 }

@@ -2,7 +2,7 @@ package com.assignment.cookrecipe.service;
 
 import com.assignment.cookrecipe.model.Recipe;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * TODO Class description
@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface RecipeService {
 
-    List<Recipe> findAllRecipes();
+    Set<Recipe> findAllRecipes();
 
 }

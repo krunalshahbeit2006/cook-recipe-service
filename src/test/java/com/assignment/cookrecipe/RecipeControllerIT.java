@@ -14,9 +14,6 @@ import java.net.URL;
 
 import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE1_JSON;
 import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE2_JSON;
-import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE3_JSON;
-import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE4_JSON;
-import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE5_JSON;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
 
@@ -37,15 +34,11 @@ public class RecipeControllerIT {
         this.base = new URL("http://localhost:" + port + "/api/recipes");
     }
 
-    //@Ignore
     @Test
     public void listAllRecipes() throws Exception {
         ResponseEntity<String> response = template.getForEntity(base.toString(),
                 String.class);
         assertThat(response.getBody(), containsString(RECIPE1_JSON));
         assertThat(response.getBody(), containsString(RECIPE2_JSON));
-        assertThat(response.getBody(), containsString(RECIPE3_JSON));
-        assertThat(response.getBody(), containsString(RECIPE4_JSON));
-        assertThat(response.getBody(), containsString(RECIPE5_JSON));
     }
 }
