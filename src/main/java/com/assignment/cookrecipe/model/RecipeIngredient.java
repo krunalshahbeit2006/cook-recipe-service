@@ -1,6 +1,16 @@
 package com.assignment.cookrecipe.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 /**
  * TODO Class description
@@ -8,12 +18,29 @@ import javax.validation.constraints.NotBlank;
  * @author ShahKA
  * @since 7/14/2018
  */
-public class RecipeIngredient {
+@Entity(name = "RecipeIngredient")
+@Table(name = "COOK_RECIPE_INGREDIENT")
+public class RecipeIngredient implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column(name = "ID", updatable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     @NotBlank
+    @Column(name = "INGREDIENT", nullable = false, length = 100)
     private String ingredient;
+
+    @NotBlank
+    @ManyToOne(targetEntity = Recipe.class, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "RECIPE_ID", nullable = false)
+    private Recipe recipe;
+
+    public RecipeIngredient() {
+
+    }
 
     public RecipeIngredient(final long id, final String ingredient) {
         this.id = id;

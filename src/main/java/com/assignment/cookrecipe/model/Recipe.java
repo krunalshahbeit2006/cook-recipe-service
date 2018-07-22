@@ -1,6 +1,17 @@
 package com.assignment.cookrecipe.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -10,21 +21,41 @@ import java.util.Set;
  * @author ShahKA
  * @since 7/14/2018
  */
-public class Recipe {
+@Entity(name = "Recipe")
+@Table(name = "COOK_RECIPE",
+        indexes = { @Index(name = "COOK_RECIPE_INDEX1", columnList = "DISH_TYPE") })
+public class Recipe implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "ID", updatable = false)
     private long id;
 
     @NotBlank
+    @Column(name = "NAME", nullable = false, unique = true, updatable = false, length = 100)
     private String name;
 
     @NotBlank
+    @Column(name = "DISH_TYPE", nullable = false, length = 15)
     private String typeOfDish;
 
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OrderBy("ID ASC")
     private Set<RecipeDetail> details;
 
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OrderBy("ID ASC")
     private Set<RecipeIngredient> ingredients;
 
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OrderBy("ID ASC")
     private Set<RecipeInstruction> instructions;
+
+    public Recipe() {
+
+    }
 
     public Recipe(final long id, final String name, final String typeOfDish) {
         this.id = id;

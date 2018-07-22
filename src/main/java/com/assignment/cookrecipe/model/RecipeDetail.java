@@ -1,6 +1,17 @@
 package com.assignment.cookrecipe.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,15 +20,36 @@ import java.util.Date;
  * @author ShahKA
  * @since 7/14/2018
  */
-public class RecipeDetail {
+@Entity(name = "RecipeDetail")
+@Table(name = "COOK_RECIPE_DETAIL",
+        indexes = { @Index(name = "COOK_RECIPE_DETAIL_INDEX1", columnList = "RECIPE_ID"),
+                @Index(name = "COOK_RECIPE_DETAIL_INDEX2", columnList = "CREATION_DATE"),
+                @Index(name = "COOK_RECIPE_DETAIL_INDEX3", columnList = "SUITABLE_FOR") })
+public class RecipeDetail implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column(name = "ID", updatable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     @NotBlank
+    @Column(name = "CREATION_DATE", nullable = false)
     private Date dateOfCreation;
 
     @NotBlank
+    @Column(name = "SUITABLE_FOR", nullable = false)
     private int numberOfPeopleDishSuitableFor;
+
+    @NotBlank
+    @ManyToOne(targetEntity = Recipe.class, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "RECIPE_ID", nullable = false)
+    private Recipe recipe;
+
+    public RecipeDetail() {
+
+    }
 
     public RecipeDetail(final long id, final Date dateOfCreation, final int numberOfPeopleDishSuitableFor) {
         this.id = id;

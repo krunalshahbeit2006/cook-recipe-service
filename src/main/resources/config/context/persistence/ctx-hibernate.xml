@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:properties/persistence/hibernate.properties"/>
+    <bean id="hibernateProperties"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:properties/persistence/hibernate.properties</value>
+            </list>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect:org.hibernate.dialect.HSQLDialect}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto:validate}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql:true}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql:true}</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
