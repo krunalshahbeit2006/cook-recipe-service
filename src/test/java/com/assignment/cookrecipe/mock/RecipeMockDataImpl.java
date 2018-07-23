@@ -1,4 +1,4 @@
-package com.assignment.cookrecipe.data;
+package com.assignment.cookrecipe.mock;
 
 import com.assignment.cookrecipe.model.Recipe;
 import com.assignment.cookrecipe.model.RecipeDetail;
@@ -18,7 +18,7 @@ import java.util.Set;
  * @since 7/14/2018
  */
 @Component(value = "recipeData")
-public class RecipeDataImpl implements RecipeData {
+public class RecipeMockDataImpl implements RecipeMockData {
 
     private static final Calendar CALENDAR = Calendar.getInstance();
     private static final Date TODAY = CALENDAR.getTime();

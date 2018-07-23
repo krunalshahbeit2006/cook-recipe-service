@@ -1,4 +1,4 @@
-package com.assignment.cookrecipe.data;
+package com.assignment.cookrecipe.mock;
 
 import com.assignment.cookrecipe.model.Recipe;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  * @author ShahKA
  * @since 7/14/2018
  */
-public interface RecipeData {
+public interface RecipeMockData {
 
     Set<Recipe> loadAllRecipes();
 
