@@ -1,4 +1,4 @@
-package com.assignment.cookrecipe.util;
+package com.assignment.cookrecipe.error;
 
 public class CustomErrorType {
 

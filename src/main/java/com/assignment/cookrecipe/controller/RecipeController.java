@@ -2,7 +2,7 @@ package com.assignment.cookrecipe.controller;
 
 import com.assignment.cookrecipe.model.Recipe;
 import com.assignment.cookrecipe.service.RecipeService;
-import com.assignment.cookrecipe.util.CustomErrorType;
+import com.assignment.cookrecipe.error.CustomErrorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
