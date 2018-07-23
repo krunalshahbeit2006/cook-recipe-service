@@ -1,6 +1,6 @@
 package com.assignment.cookrecipe.service;
 
-import com.assignment.cookrecipe.data.RecipeData;
+import com.assignment.cookrecipe.dao.RecipeDAO;
 import com.assignment.cookrecipe.model.Recipe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,13 +21,12 @@ public class RecipeServiceImpl implements RecipeService {
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeServiceImpl.class);
 
     @Autowired
-    private RecipeData recipeData;
+    private RecipeDAO recipeDAO;
 
     public Set<Recipe> findAllRecipes() {
         Set<Recipe> recipes;
 
-        // TODO: Create DAO implementation and use persistence api asap
-        recipes = recipeData.loadAllRecipes();
+        recipes = recipeDAO.findAll();
         LOGGER.debug("recipes: {}", recipes);
 
         return recipes;
