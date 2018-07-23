@@ -36,9 +36,9 @@ public class RecipeApplication {
             for (String beanName : beanNames) {
                 LOGGER.info("beanName: {}", beanName);
             }*/
-            LOGGER.info("Let's inspect the beans provided by Application:");
+            /*LOGGER.info("Let's inspect the beans provided by Application:");
             RecipeApplication recipeApplicationBean = ctx.getBean(RecipeApplication.class);
-            LOGGER.info("applicationBean: {}", recipeApplicationBean);
+            LOGGER.info("applicationBean: {}", recipeApplicationBean);*/
         };
     }
 
