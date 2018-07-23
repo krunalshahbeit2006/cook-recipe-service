@@ -40,7 +40,7 @@ public class RecipeController {
             // You many decide to return HttpStatus.NOT_FOUND
         }
         LOGGER.debug("recipes: {}", recipes.size());
-        return new ResponseEntity<Set<Recipe>>(recipes, HttpStatus.OK);
+        return ResponseEntity.ok().body(recipes);
     }
 
 }
