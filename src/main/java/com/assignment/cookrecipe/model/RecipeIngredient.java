@@ -25,8 +25,8 @@ public class RecipeIngredient implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "ID", updatable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ID", updatable = false)
     private long id;
 
     @NotBlank
