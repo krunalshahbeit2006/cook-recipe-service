@@ -13,6 +13,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE1_JSON;
 import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE2_JSON;
+import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE_DETAILS_KEY;
+import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE_INGREDIENTS_KEY;
+import static com.assignment.cookrecipe.constants.RecipeConstants.RECIPE_INSTRUCTIONS_KEY;
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,7 +33,8 @@ public class RecipeControllerTest {
     public void listAllRecipes() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/api/recipes").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString(RECIPE1_JSON)))
-                .andExpect(content().string(containsString(RECIPE2_JSON)));
+                .andExpect(content().string(containsString(RECIPE_DETAILS_KEY)))
+                .andExpect(content().string(containsString(RECIPE_INGREDIENTS_KEY)))
+                .andExpect(content().string(containsString(RECIPE_INSTRUCTIONS_KEY)));
     }
 }

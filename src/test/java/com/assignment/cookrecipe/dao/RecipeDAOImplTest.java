@@ -13,6 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Set;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
 @ContextConfiguration(locations = { "classpath:config/context/ctx-test-application.xml" })
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,5 +31,13 @@ public class RecipeDAOImplTest {
     public void findAll() throws Exception {
         Set<Recipe> recipes = recipeDAO.findAll();
         LOGGER.info("recipes: {}", recipes);
+
+        assertNotNull("Recipes is null.", recipes);
+        assertFalse("Recipes is empty.", recipes.isEmpty());
+
+        for (Recipe recipe : recipes) {
+            assertNotNull("Recipe name is null.", recipe.getName());
+            assertNotNull("Recipe type is null.", recipe.getTypeOfDish());
+        }
     }
 }
