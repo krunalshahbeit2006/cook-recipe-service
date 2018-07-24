@@ -25,8 +25,10 @@ public class RecipeMockDataImpl implements RecipeMockData {
 
     public Set<Recipe> loadAllRecipes() {
         Set<Recipe> recipes = new LinkedHashSet<>();
+
         int cntRecipe = 11;
         int cntDetail = 11;
+
         int cntIngredients = 11;
         int cntInstruction = 11;
 
@@ -49,8 +51,7 @@ public class RecipeMockDataImpl implements RecipeMockData {
 
         recipes.add(recipe1);
 
-        cntRecipe = 12;
-        cntDetail = 21;
+
         cntIngredients = 21;
         cntInstruction = 21;
 
@@ -83,6 +84,36 @@ public class RecipeMockDataImpl implements RecipeMockData {
         recipe2.addInstructions(new RecipeInstruction(cntInstruction++, "Serve in large bowls with rye bread smeared with fresh cream cheese."));
 
         recipes.add(recipe2);
+
+
+        cntIngredients = 31;
+        cntInstruction = 31;
+
+        Recipe recipe3 = new Recipe(cntRecipe++, "Appeltaart", "Vegetarian");
+        recipe3.addDetail(new RecipeDetail(cntDetail++, TODAY, 12));
+        recipe3.addIngredient(new RecipeIngredient(cntIngredients++, "test ingredient"));
+        recipe3.addInstructions(new RecipeInstruction(cntInstruction++, "test instruction"));
+        recipes.add(recipe3);
+
+
+        cntIngredients = 41;
+        cntInstruction = 41;
+
+        Recipe recipe4 = new Recipe(cntRecipe++, "Bami Goreng", "Non-vegetarian");
+        recipe4.addDetail(new RecipeDetail(cntDetail++, TODAY, 14));
+        recipe4.addIngredient(new RecipeIngredient(cntIngredients++, "test ingredient"));
+        recipe4.addInstructions(new RecipeInstruction(cntInstruction++, "test instruction"));
+        recipes.add(recipe4);
+
+
+        cntIngredients = 51;
+        cntInstruction = 51;
+
+        Recipe recipe5 = new Recipe(cntRecipe++, "Bitterballen", "Vegetarian");
+        recipe5.addDetail(new RecipeDetail(cntDetail++, TODAY, 40));
+        recipe5.addIngredient(new RecipeIngredient(cntIngredients++, "test ingredient"));
+        recipe5.addInstructions(new RecipeInstruction(cntInstruction++, "test instruction"));
+        recipes.add(recipe5);
 
         return recipes;
     }
